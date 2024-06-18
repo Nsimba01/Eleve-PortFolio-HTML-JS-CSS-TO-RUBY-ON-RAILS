@@ -73,4 +73,28 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+# Autres configurations...
+
+  # Configuration pour l'envoi d'e-mails via SMTP (exemple avec Outlook)
+
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.office365.com',
+    port: 587,
+    domain: 'hotmail.fr',
+    user_name: 'kklamalice@hotmail.fr',
+    password: 'Zropoto236@',
+    authentication: :login,
+    enable_starttls_auto: true
+  }
+
+  # Configuration pour afficher les e-mails dans la console en développement
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = { from: 'kklamalice@hotmail.fr' }
+
+
+  
 end
