@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: mon-app-rails-sans-db # Mettez le nom que vous voulez
+    env: ruby
+    plan: free # Parfait pour un projet sans base de données
+    
+    # Commande pour installer les dépendances
+    buildCommand: "./bin/render-build.sh"
+    
+    # Commande pour démarrer le serveur web (Puma par défaut dans Rails)
+    startCommand: "bundle exec rails server"
+    
+    healthCheckPath: / # Render vérifiera cette route pour savoir si votre app est en ligne

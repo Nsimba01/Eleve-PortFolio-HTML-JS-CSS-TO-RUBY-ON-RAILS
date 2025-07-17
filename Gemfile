@@ -8,9 +8,16 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.3"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
+# Gemfile
 
-# Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
+# Commenté car pas de DB
+# gem 'sqlite3', '~> 1.4'
+
+gem 'puma', '~> 6.0'
+
+gem 'sass-rails', '>= 6'
+
+
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"

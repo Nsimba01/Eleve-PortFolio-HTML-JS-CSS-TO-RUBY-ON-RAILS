@@ -42,27 +42,7 @@
         </div>
         <!-- Formulaire de contact -->
         <div>
-         <div class="contact-form" >
-            <h2>Formulaire de Contact</h2> <!-- Titre du formulaire -->
-            <%= form_with(url: '/contact_submit', method: :post, id: 'contact-form', remote: true) do |form| %>
-                  <%= form.text_field :nom, placeholder: "Nom" %>
-                  <%= form.email_field :email, placeholder: "Email" %>
-                  <%= form.text_area :message, placeholder: "Votre message" %>
-                  <%= form.submit 'Envoyer' %>
-            <% end %>
-
-            <% if flash[:notice] %>
-            
-                 <div id="notice" style="color: red; text-align: center;">
-                    <%= flash[:notice] %>
-                 </div>
-            
-             <% end %>
-              
-              
-              
-              
-         </div>
+      
 
         </div>
         
