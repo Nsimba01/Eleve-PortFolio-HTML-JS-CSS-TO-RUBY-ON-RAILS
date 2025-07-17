@@ -1,13 +1,30 @@
 services:
   - type: web
-    name: mon-app-rails-sans-db # Mettez le nom que vous voulez
+    name: mon-app-rails-sans-db       # nom de votre service sur Render
     env: ruby
-    plan: free # Parfait pour un projet sans base de données
-    
-    # Commande pour installer les dépendances
-    buildCommand: "./bin/render-build.sh"
-    
-    # Commande pour démarrer le serveur web (Puma par défaut dans Rails)
-    startCommand: "bundle exec rails server"
-    
-    healthCheckPath: / # Render vérifiera cette route pour savoir si votre app est en ligne
+    envVersion: 3.3.0                 # doit matcher votre .ruby-version
+    plan: free
+    region: frankfurt                 # ou une autre région disponible
+    branch: main                      # branche Git à déployer
+
+    # Variables d’environnement
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: SECRET_KEY_BASE
+        # générez-le en local avec `bundle exec rake secret`
+        value: <votre_secret_key_base>
+
+    # Commande de build
+    buildCommand: |
+      bundle config set deployment 'true'
+      bundle install --jobs 4 --retry 3
+      # si vous avez des assets Rails (CSS/JS), sinon omettez la ligne suivante
+      bundle exec rake assets:precompile
+
+    # Commande de démarrage
+    startCommand: |
+      bundle exec puma -C config/puma.rb
+
+    # Path que Render va requêter pour vérifier que l’app tourne
+    healthCheckPath: /
